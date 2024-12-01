@@ -1,0 +1,15 @@
+
+
+<div class="max-w-sm rounded overflow-hidden p-4 bg-white">
+    <a [routerLink]="['/annonce', id]">
+        <img class="w-full h-48 object-cover rounded-xl" [src]="presentationPicture" alt="{{ title }}">
+    </a>
+    <div class="px-6 py-4">
+        <div class="flex">
+            <p>{{adresse.city}}, {{adresse.streetName}}</p>
+            <p>note</p>
+        </div>
+        <p>slot max</p>
+        <p>{{ price }} € par mois</p>
+    </div>
+</div>

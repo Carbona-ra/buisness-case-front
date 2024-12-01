@@ -1,0 +1,85 @@
+<div class="container mx-auto p-4">
+    <!-- Titre de l'annonce -->
+    <h1 class="text-3xl font-bold mb-4">{{ advertise.title }}</h1>
+  
+    <!-- Images principales -->
+    <div class="grid grid-cols-12 gap-4 mb-6">
+        <!-- Image principale (sur 4/12) -->
+        <div class="col-span-12 md:col-span-4">
+          <img
+            [src]="advertise?.presentationPicture || 'https://via.placeholder.com/640x480.png'"
+            alt="{{ advertise?.title }}"
+            class="rounded-lg w-full h-auto object-cover"
+          />
+        </div>
+      
+        <!-- Images secondaires (sur 8/12) -->
+        <div class="col-span-12 md:col-span-8 grid grid-cols-4 gap-4">
+          <!-- Si des images secondaires existent, utilisez-les. Sinon, utilisez les placeholders. -->
+          <img
+            *ngFor="let image of advertiseImagesPlacholder"
+            [src]="image"
+            alt="{{ advertise?.title }}"
+            class="rounded-lg w-full h-32 object-cover"
+          />
+        </div>
+    </div>
+      
+      
+    
+    <div class="grid grid-cols-12 gap-4 mb-6">
+        <!-- Détails et informations -->
+        <div class="col-span-12 md:col-span-9">
+            <!-- Détails -->
+            <div class="mb-4">
+                <p class="text-gray-800">{{ advertise.adresse.city }}, {{ advertise.adresse.adresseNumber }}, {{ advertise.adresse.streetName }} - {{ advertise.price }} € par mois - {{ advertise.reactions[0].note }}/5</p>
+                <p class="text-gray-800">{{ advertise.ActualNumberPlace }} Habitants - <span *ngFor="let service of advertise.services; let i = index">
+                    {{ service.name }}{{ i < advertise.services.length - 1 ? ', ' : '' }}
+                </span></p>
+            </div>
+    
+            <hr>
+            <br>
+            <div class="mb-4 flex items-center">
+                <!-- Image circulaire à gauche -->
+                <div class="mr-4">
+                    <img src="" alt="Annonce image" class="w-24 h-24 rounded-full object-cover">
+                </div>
+                
+                <!-- Texte à droite -->
+                <div>
+                    <p class="text-gray-800">{{ advertise.adresse.city }}</p>
+                    <p class="text-gray-800">{{ advertise.adresse.city }}</p>
+                </div>
+            </div>
+            <hr>
+            <br>
+            <p class="text-gray-800">{{ advertiseDetails }}</p>
+        </div>
+    
+        <!-- Formulaire de réservation -->
+        <div class="col-span-12 md:col-span-3">
+            <div class="mt-6">
+                <h2 class="text-xl font-semibold mb-2">Réserver cette annonce</h2>
+                <div class="flex flex-col sm:flex-row items-start sm:items-center">
+                    <input
+                    type="date"
+                    class="border rounded-lg p-2 mb-4 sm:mb-0 sm:mr-4"
+                    [(ngModel)]="selectedDate"
+                    />
+                    <button
+                    (click)="bookAdvertise()"
+                    class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+                    >
+                    Réserver
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex items-center">
+        <img src="/public/Capture.PNG" alt="Image" class="w-100 h-100 rounded-full object-cover px-20">
+    </div>
+  </div>
+  

@@ -1,0 +1,8 @@
+<form [formGroup]="form" (ngSubmit)="onSubmitForm()">
+    <div class="flex flex-col sm:flex-row justify-center space-x-4">
+        <input formControlName="price"  type="number" placeholder="Quel prix ?" class="border rounded-lg p-3 w-full sm:w-1/4 shadow-sm focus:outline-none focus:ring focus:ring-pink-400">
+        <input formControlName="slot"  type="number" placeholder="Combien d'habitants ?" class="border rounded-lg p-3 w-full sm:w-1/4 shadow-sm focus:outline-none focus:ring focus:ring-pink-400">
+        <input formControlName="place"  type="text" placeholder="Où ?" class="border rounded-lg p-3 w-full sm:w-1/4 shadow-sm focus:outline-none focus:ring focus:ring-pink-400">
+        <button class="px-4 py-2 bg-pink-400 text-white rounded-lg shadow-sm">Rechercher</button>
+    </div>
+</form>

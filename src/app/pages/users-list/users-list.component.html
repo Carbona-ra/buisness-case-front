@@ -1,0 +1,14 @@
+<div>
+
+    <div *ngFor="let user of users" class="col-span-3">
+        {{user.email}}
+        <button
+        (click)="onClickShowConversation(user)">tchat</button>
+    </div>
+
+    <div class="col-span-9">
+        
+    </div>
+
+</div>
+

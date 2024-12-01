@@ -1,0 +1,30 @@
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Résultats de la recherche</h2>
+  
+  <div class="text-muted mb-4 text-center">
+      <p *ngIf="searchParams?.place">Lieu : <strong>{{ searchParams.place }}</strong></p>
+      <p *ngIf="searchParams?.price">Prix maximum : <strong>{{ searchParams.price }} €</strong></p>
+      <p *ngIf="searchParams?.slot">Nombre de places : <strong>{{ searchParams.slot }}</strong></p>
+  </div>
+  
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+    <ng-container *ngFor="let advertise of advertises">
+        <app-advertise-card
+            [id]="advertise.id" 
+            [title]="advertise.title" 
+            [price]="advertise.price" 
+            [adresse]="advertise.adresse" 
+            [presentationPicture]="advertise.presentationPicture" 
+            [advertiseImages]="advertise.advertiseImages">
+        </app-advertise-card>
+    </ng-container>
+</div>
+  
+  <ng-template #noResults>
+      <p class="text-center text-muted">Aucun résultat ne correspond aux critères de recherche.</p>
+  </ng-template>
+
+  <div class="text-center mt-4">
+      <button (click)="onBackToSearch()" class="btn btn-primary">Retour à la recherche</button>
+  </div>
+</div>

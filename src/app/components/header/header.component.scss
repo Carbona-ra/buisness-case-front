@@ -1,0 +1,15 @@
+.corner {
+    width: 60px;
+    background-color: #6E6974;
+    height: 140px;
+    
+    position: absolute;
+}
+.r-corner {
+    top: 0;
+    right: 0;
+    mask-image: radial-gradient(circle at bottom left, transparent 60px, black 31px);
+}
+.l-corner {
+    mask-image: radial-gradient(circle at bottom right, transparent 60px, black 31px);
+}

@@ -1,0 +1,42 @@
+<div class="flex flex-col sm:flex-row items-center">
+    <!-- Section commentaire -->
+    <div class="bg-white p-6 rounded-lg w-full sm:w-12/12 mr-0 sm:mr-12 shadow-md">
+        <h2 class="text-xl font-bold mb-4">Commentaires</h2>
+        <div class="relative overflow-hidden">
+            <!-- Conteneur du slider -->
+            <div #sliderContainer class="flex transition-transform duration-500 ease-out">
+                <!-- Commentaire 1 -->
+                <div class="min-w-full flex-shrink-0 p-4 bg-gray-100 rounded-md shadow mx-2">
+                    <p class="text-sm text-gray-600">
+                        <strong>Utilisateur1 :</strong> Très bon article, merci pour les explications !
+                    </p>
+                </div>
+                <!-- Commentaire 2 -->
+                <div class="min-w-full flex-shrink-0 p-4 bg-gray-100 rounded-md shadow mx-2">
+                    <p class="text-sm text-gray-600">
+                        <strong>Utilisateur2 :</strong> J'ai quelques questions, pouvez-vous développer un peu plus ?
+                    </p>
+                </div>
+                <!-- Commentaire 3 -->
+                <div class="min-w-full flex-shrink-0 p-4 bg-gray-100 rounded-md shadow mx-2">
+                    <p class="text-sm text-gray-600">
+                        <strong>Utilisateur3 :</strong> Super intéressant, hâte d’en apprendre davantage.
+                    </p>
+                </div>
+                <!-- Commentaire 4 -->
+                <div class="min-w-full flex-shrink-0 p-4 bg-gray-100 rounded-md shadow mx-2">
+                    <p class="text-sm text-gray-600">
+                        <strong>Utilisateur4 :</strong> Merci pour cette publication, c’est exactement ce que je cherchais.
+                    </p>
+                </div>
+            </div>
+            <!-- Boutons de navigation -->
+            <button (click)="prevSlide()" [disabled]="currentIndex === 0" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded-full disabled:opacity-50 disabled:cursor-not-allowed z-10">
+                &larr;
+            </button>
+            <button (click)="nextSlide()" [disabled]="currentIndex === 4" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded-full disabled:opacity-50 disabled:cursor-not-allowed z-10">
+                &rarr;
+            </button>
+        </div>
+    </div>
+</div>

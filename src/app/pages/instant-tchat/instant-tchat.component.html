@@ -1,0 +1,33 @@
+<div class="grid grid-cols-12 gap-4">
+    <div class="col-span-3 overflow-x-hidden h-[500px] scrollbar-hide" id="Contact">
+        <app-users-list></app-users-list>
+    </div>
+
+    <div class="col-span-9 h-[500px] flex flex-col" id="conversation">
+        <div class="overflow-x-auto flex-grow ">
+            <div *ngIf="receiver">
+                {{receiver.firstname}} {{receiver.lastname}}
+            </div>
+
+            <ng-container *ngFor="let message of messages">
+                <div class="flex"
+                    [class.flex-row]="message.sender === receiver.id"  
+                    [class.flex-row-reverse]="message.sender !== receiver.id">
+                    <div class="flex-col flex">
+                        <span>
+                            {{message.content}}
+                        </span>
+                        <span>
+                            {{message.sentDate | date: 'dd/MM/yyyy HH:mm'}}
+                        </span>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+
+        <form *ngIf="form" class="flex" [formGroup]="form" (ngSubmit)="onClickSendMessage()">
+            <input formControlName="content" type="text" placeholder="Taper un message" class="flex-grow border rounded-l-md p-2" />
+            <button [disabled]="form.invalid" type="submit" class="bg-blue-500 text-white rounded-r-md px-4">Envoyer</button>
+        </form>
+    </div>
+</div>

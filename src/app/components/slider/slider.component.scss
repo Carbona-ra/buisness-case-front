@@ -1,0 +1,28 @@
+/* Ajout de styles personnalisés */
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  .flex {
+    display: flex;
+  }
+  
+  .relative {
+    position: relative;
+  }
+  
+  .overflow-hidden {
+    overflow: hidden;
+  }
+  #comment-slider {
+    display: flex;
+    transition: transform 0.5s ease-out;
+  }
+  
+  button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+    
