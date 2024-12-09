@@ -8,6 +8,7 @@ import { InstantTchatComponent } from './pages/instant-tchat/instant-tchat.compo
 import { UsersListComponent } from './pages/users-list/users-list.component';
 import { SearchResultsComponent } from './pages/search-results/search-results.component';
 import { AdvertiseComponent } from './pages/advertise/advertise.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 export const routes: Routes = [
     {path: '', component: HomeComponent},
@@ -16,6 +17,7 @@ export const routes: Routes = [
     {path: 'annonce/:id', component: AdvertiseComponent},
     {path: 'connexion', canActivate: [noAuthGuard], component: LoginComponent},
     {path: 'conversation', canActivate: [authGuard], component: InstantTchatComponent},
+    {path: 'profile/:id', canActivate: [authGuard], component: ProfileComponent},
     {path: 'page-introuvable', component: NotFoundComponent},
     {path: '**', redirectTo: 'page-introuvable'}
 ];

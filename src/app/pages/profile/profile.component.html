@@ -1,0 +1,38 @@
+<div *ngIf="user; else errorTemplate">
+    <h1>{{ user.firstname }} {{ user.lastname }}</h1>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>Roles:</strong> {{ user.roles.join(', ') }}</p>
+  
+    <h2>Adresse</h2>
+    <p *ngIf="user.adresse">
+      {{ user.adresse.streetName }} {{ user.adresse.adresseNumber }}, {{ user.adresse.city }},
+      {{ user.adresse.postalCode }}, {{ user.adresse.country }}
+    </p>
+  
+    <h2>Advertises</h2>
+    <ul *ngIf="user.advertises?.length; else noAdvertises">
+      <li *ngFor="let ad of user.advertises">{{ ad.title }}</li>
+    </ul>
+    <ng-template #noAdvertises><p>No advertisements available.</p></ng-template>
+  
+    <h2>Reactions</h2>
+    <ul *ngIf="user.reactions?.length; else noReactions">
+      <li *ngFor="let reaction of user.reactions">
+        Note: {{ reaction.note }}, Favorite: {{ reaction.isFavorite ? 'Yes' : 'No' }}, Ad: {{ reaction.Advertise.title }}
+      </li>
+    </ul>
+    <ng-template #noReactions><p>No reactions available.</p></ng-template>
+  
+    <h2>Reservations</h2>
+    <ul *ngIf="user.reservations?.length; else noReservations">
+      <li *ngFor="let reservation of user.reservations">
+        Ad: {{ reservation.Advertise.title }}
+      </li>
+    </ul>
+    <ng-template #noReservations><p>No reservations available.</p></ng-template>
+  </div>
+  
+  <ng-template #errorTemplate>
+    <p class="error">{{ errorMessage }}</p>
+  </ng-template>
+  
