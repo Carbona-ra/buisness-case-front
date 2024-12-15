@@ -1,38 +1,80 @@
-<div *ngIf="user; else errorTemplate">
-    <h1>{{ user.firstname }} {{ user.lastname }}</h1>
-    <p><strong>Email:</strong> {{ user.email }}</p>
-    <p><strong>Roles:</strong> {{ user.roles.join(', ') }}</p>
-  
-    <h2>Adresse</h2>
-    <p *ngIf="user.adresse">
-      {{ user.adresse.streetName }} {{ user.adresse.adresseNumber }}, {{ user.adresse.city }},
-      {{ user.adresse.postalCode }}, {{ user.adresse.country }}
-    </p>
-  
-    <h2>Advertises</h2>
-    <ul *ngIf="user.advertises?.length; else noAdvertises">
-      <li *ngFor="let ad of user.advertises">{{ ad.title }}</li>
-    </ul>
-    <ng-template #noAdvertises><p>No advertisements available.</p></ng-template>
-  
-    <h2>Reactions</h2>
-    <ul *ngIf="user.reactions?.length; else noReactions">
-      <li *ngFor="let reaction of user.reactions">
-        Note: {{ reaction.note }}, Favorite: {{ reaction.isFavorite ? 'Yes' : 'No' }}, Ad: {{ reaction.Advertise.title }}
-      </li>
-    </ul>
-    <ng-template #noReactions><p>No reactions available.</p></ng-template>
-  
-    <h2>Reservations</h2>
-    <ul *ngIf="user.reservations?.length; else noReservations">
-      <li *ngFor="let reservation of user.reservations">
-        Ad: {{ reservation.Advertise.title }}
-      </li>
-    </ul>
-    <ng-template #noReservations><p>No reservations available.</p></ng-template>
+<div class="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg">
+  <div class="flex items-center justify-between mb-6">
+    <h1 class="text-3xl font-bold text-gray-800">
+      {{ user.firstname }} {{ user.lastname }}
+    </h1>
+    <ng-container *ngIf="isOwner">
+      <button 
+        class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
+        (click)="editMode = !editMode">
+        {{ editMode ? 'Cancel' : 'Edit Profile' }}
+      </button>
+    </ng-container>
   </div>
-  
+
+  <div *ngIf="editMode">
+    <app-edit-profile></app-edit-profile>
+  </div>
+
+  <div *ngIf="user; else errorTemplate">
+    <div class="mb-6">
+      <p class="text-gray-600"><strong>Email:</strong> {{ user.email }}</p>
+      <p class="text-gray-600"><strong>Roles:</strong> {{ user.roles.join(', ') }}</p>
+    </div>
+
+    <div class="mb-6">
+      <h2 class="text-2xl font-semibold text-gray-800 mb-2">Adresse</h2>
+      <p *ngIf="user.adresse" class="text-gray-600">
+        {{ user.adresse.streetName }} {{ user.adresse.adresseNumber }},
+        {{ user.adresse.city }}, {{ user.adresse.postalCode }},
+        {{ user.adresse.country }}
+      </p>
+    </div>
+
+    <div class="mb-6">
+      <h2 class="text-2xl font-semibold text-gray-800 mb-2">Advertises</h2>
+      <ul 
+        *ngIf="user.advertises?.length; else noAdvertises" 
+        class="list-disc pl-5 text-gray-600">
+        <li *ngFor="let ad of user.advertises">{{ ad.title }}</li>
+      </ul>
+      <ng-template #noAdvertises>
+        <p class="text-gray-500 italic">No advertisements available.</p>
+      </ng-template>
+    </div>
+
+    <div class="mb-6">
+      <h2 class="text-2xl font-semibold text-gray-800 mb-2">Reactions</h2>
+      <ul 
+        *ngIf="user.reactions?.length; else noReactions" 
+        class="list-disc pl-5 text-gray-600">
+        <li *ngFor="let reaction of user.reactions">
+          Note: {{ reaction.note }}, 
+          Favorite: {{ reaction.isFavorite ? 'Yes' : 'No' }}, 
+          Ad: {{ reaction.Advertise.title }}
+        </li>
+      </ul>
+      <ng-template #noReactions>
+        <p class="text-gray-500 italic">No reactions available.</p>
+      </ng-template>
+    </div>
+
+    <div class="mb-6">
+      <h2 class="text-2xl font-semibold text-gray-800 mb-2">Reservations</h2>
+      <ul 
+        *ngIf="user.reservations?.length; else noReservations" 
+        class="list-disc pl-5 text-gray-600">
+        <li *ngFor="let reservation of user.reservations">
+          Ad: {{ reservation.Advertise.title }}
+        </li>
+      </ul>
+      <ng-template #noReservations>
+        <p class="text-gray-500 italic">No reservations available.</p>
+      </ng-template>
+    </div>
+  </div>
+
   <ng-template #errorTemplate>
-    <p class="error">{{ errorMessage }}</p>
+    <p class="text-red-500 font-semibold">{{ errorMessage }}</p>
   </ng-template>
-  
+</div>

@@ -1,1 +1,50 @@
-<p>edit-profile works!</p>
+<div *ngIf="isOwner; else notAuthorized">
+    <h2>Edit Your Profile</h2>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="email">Email:</label>
+        <input id="email" formControlName="email" type="email" />
+      </div>
+      <div>
+        <label for="firstname">First Name:</label>
+        <input id="firstname" formControlName="firstname" type="text" />
+      </div>
+      <div>
+        <label for="lastname">Last Name:</label>
+        <input id="lastname" formControlName="lastname" type="text" />
+      </div>
+      <div formGroupName="adresse">
+        <h3>Address</h3>
+        <div>
+          <label for="city">City:</label>
+          <input id="city" formControlName="city" type="text" />
+        </div>
+        <div>
+          <label for="streetName">Street Name:</label>
+          <input id="streetName" formControlName="streetName" type="text" />
+        </div>
+        <div>
+          <label for="adresseNumber">Number:</label>
+          <input id="adresseNumber" formControlName="adresseNumber" type="number" />
+        </div>
+        <div>
+          <label for="country">Country:</label>
+          <input id="country" formControlName="country" type="text" />
+        </div>
+        <div>
+          <label for="postalCode">Postal Code:</label>
+          <input id="postalCode" formControlName="postalCode" type="number" />
+        </div>
+      </div>
+      <div>
+        <button type="submit">Save</button>
+      </div>
+    </form>
+    <div *ngIf="successMessage" class="success">{{ successMessage }}</div>
+    <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+  </div>
+  
+  <ng-template #notAuthorized>
+    <p class="error">You are not authorized to edit this profile.</p>
+  </ng-template>
+  

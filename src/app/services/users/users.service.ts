@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, lastValueFrom, Observable } from 'rxjs';
 import { User, UserHttp, UserJWT } from '../../entities/user.entity';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BaseServices } from '../base.service';
 
 @Injectable({
@@ -42,4 +42,22 @@ export class UsersService extends BaseServices {
     
     return User.fromHttp(res)
   }
+  
+  async updateUser(id: number, userData: Partial<User>): Promise<User> {
+    // Définir l'en-tête Content-Type pour s'assurer que la requête est envoyée en JSON
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/merge-patch+json'
+    });
+  
+    // Passer les en-têtes dans la requête HTTP
+    const req = this.http.patch<UserHttp>(`${this.ApiUrl}/${id}`, userData, { headers });
+  
+    // Attendre la réponse de l'API
+    const res = await lastValueFrom(req);
+    
+    // Retourner les données après les avoir transformées
+    return User.fromHttp(res);
+  }
+  
+  
 }
