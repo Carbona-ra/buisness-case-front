@@ -25,10 +25,6 @@ export class AuthService extends BaseServices {
     }
   }
 
-
-  
-
-
   get isAuthenticated(): boolean {
     return !!this.token
   }

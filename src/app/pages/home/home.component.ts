@@ -17,7 +17,7 @@ import { SliderComponent } from "../../components/slider/slider.component";
   styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit{
-
+  title = 'skibidi';
   private readonly authService = inject(AuthService)
   private readonly router = inject(Router)
   private readonly advertiseService = inject(AdvertiseService)
